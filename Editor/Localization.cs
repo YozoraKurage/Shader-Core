@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -67,7 +68,20 @@ namespace jp.lilxyzw.shadercore
 
         public static string[] GetLanguages()
         {
-            return languages ??= AssetUtils.GetFiles("*.po").Select(p => Path.GetFileNameWithoutExtension(p)).Distinct().Where(c => !string.IsNullOrEmpty(c) && REG_LANGCODE.IsMatch(c)).ToArray();
+            return languages ??= AssetUtils.GetFiles("*.po").Select(p => Path.GetFileNameWithoutExtension(p)).Distinct()
+                .Where(c => {
+                    if (string.IsNullOrEmpty(c) || !REG_LANGCODE.IsMatch(c)) return false;
+                    try
+                    {
+                        var a = new CultureInfo(c).NativeName;
+                        return true;
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                })
+                .ToArray();
         }
 
         public static string[] GetLanguageNames()
