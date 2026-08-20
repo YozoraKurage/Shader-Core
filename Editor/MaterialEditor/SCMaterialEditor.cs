@@ -27,6 +27,7 @@ public partial class SCMaterialEditor : MaterialEditor
     public override VisualElement CreateInspectorGUI()
     {
         UpdateInspectorGUI();
+        EditorApplication.update += Update;
         return root;
     }
 
@@ -223,8 +224,11 @@ public partial class SCMaterialEditor : MaterialEditor
     public override void OnDisable()
     {
         TargetHolder.targets.Remove(root);
+        EditorApplication.update -= Update;
         base.OnDisable();
     }
+
+    private void Update() => root.visible = isVisible;
 
     public void ShaderProperty(VisualElement container, MaterialProperty prop, string[] attributes = null)
     {
