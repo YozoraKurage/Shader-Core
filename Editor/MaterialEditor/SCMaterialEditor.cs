@@ -214,9 +214,22 @@ public partial class SCMaterialEditor : MaterialEditor
             }
         }
 
-        GetPropertyContainer(MaterialSerializedProperty.CustomRenderQueue).Add(new SCRenderQueueField(targets));
-        GetPropertyContainer(MaterialSerializedProperty.EnableInstancingVariants).Add(new SCEnableInstancingField(targets));
-        GetPropertyContainer(MaterialSerializedProperty.DoubleSidedGI).Add(new SCDoubleSidedGIField(targets));
+        //GetPropertyContainer(MaterialSerializedProperty.CustomRenderQueue).Add(new SCRenderQueueField(targets));
+        //GetPropertyContainer(MaterialSerializedProperty.EnableInstancingVariants).Add(new SCEnableInstancingField(targets));
+        //GetPropertyContainer(MaterialSerializedProperty.DoubleSidedGI).Add(new SCDoubleSidedGIField(targets));
+        var otherSettings = new IMGUIContainer(() => {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.Space(24, false);
+            EditorGUILayout.BeginVertical();
+            RenderQueueField();
+            EnableInstancingField();
+            DoubleSidedGIField();
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+        });
+        otherSettings.style.flexGrow = 1;
+        otherSettings.style.marginLeft = -24;
+        root.Add(otherSettings);
 
         L10n.Load(shaderPath);
     }
