@@ -24,11 +24,11 @@ namespace jp.lilxyzw.shadercore
             {
                 if (args.Length == 1)
                 {
-                    if (int.TryParse(value, out var num))
+                    if (NumParser.Int(value, out var num))
                     {
                         for (int i = 0; i <= num; i++)
                         {
-                            names.Add(i.ToString());
+                            names.Add(NumParser.ToString(i));
                             values.Add(i);
                         }
                     }
@@ -48,7 +48,7 @@ namespace jp.lilxyzw.shadercore
                     for (int i = 0; i < args.Length; i++)
                     {
                         if (i % 2 == 0) names.Add(args[i].Trim());
-                        else values.Add(int.Parse(args[i].Trim()));
+                        else values.Add(NumParser.Int(args[i].Trim()));
                     }
                 }
             }

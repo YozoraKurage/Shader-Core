@@ -21,12 +21,12 @@ namespace jp.lilxyzw.shadercore
             return new()
             {
                 type = type,
-                name = name?.Replace("__N__", i.ToString()),
-                originalName = originalName?.Replace("__N__", i.ToString()),
-                defaultvalue = defaultvalue?.Replace("__N__", i.ToString()),
-                attributes = attributes?.Select(a => a?.Replace("__N__", i.ToString())).ToList(),
-                displayname = displayname?.Replace("__N__", i.ToString()),
-                description = description?.Replace("__N__", i.ToString())
+                name = name?.Replace("__N__", NumParser.ToString(i)),
+                originalName = originalName?.Replace("__N__", NumParser.ToString(i)),
+                defaultvalue = defaultvalue?.Replace("__N__", NumParser.ToString(i)),
+                attributes = attributes?.Select(a => a?.Replace("__N__", NumParser.ToString(i))).ToList(),
+                displayname = displayname?.Replace("__N__", NumParser.ToString(i)),
+                description = description?.Replace("__N__", NumParser.ToString(i))
             };
         }
 

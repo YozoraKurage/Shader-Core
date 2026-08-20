@@ -236,8 +236,8 @@ namespace jp.lilxyzw.shadercore
             }
 
             string num = json[start..index];
-            if (isFloat) return double.Parse(num, CultureInfo.InvariantCulture);
-            return long.Parse(num, CultureInfo.InvariantCulture);
+            if (isFloat) return NumParser.Double(num);
+            return NumParser.Long(num);
         }
 
         private void SkipWhitespace()

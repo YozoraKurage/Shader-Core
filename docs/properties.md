@@ -86,6 +86,6 @@ private static void ExampleDecorator(SCMaterialEditor editor, MaterialProperty p
 private static void ExampleDrawer(SCMaterialEditor editor, MaterialProperty prop, string args, VisualElement container)
 {
     var argsSeparated = args.Split(',');
-    container.Add(new ExampleField(prop, float.Parse(argsSeparated[0].Replace('_','-')), float.Parse(argsSeparated[1].Replace('_','-'))));
+    container.Add(new ExampleField(prop, NumParser.Float(argsSeparated[0].Replace('_','-')), NumParser.Float(argsSeparated[1].Replace('_','-'))));
 }
 ```

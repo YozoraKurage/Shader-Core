@@ -97,7 +97,7 @@ namespace jp.lilxyzw.shadercore
             string line;
             while((line = sr.ReadLine()) != null)
             {
-                if (i != -1) line = line.Replace("__N__", i.ToString());
+                if (i != -1) line = line.Replace("__N__", NumParser.ToString(i));
                 if (module.properties != null)
                     foreach (var prop in module.properties)
                         if (!string.IsNullOrEmpty(prop.originalName)) line = Regex.Replace(

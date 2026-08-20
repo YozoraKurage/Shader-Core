@@ -138,17 +138,17 @@ namespace jp.lilxyzw.shadercore
 
             if (values.Length == 2)
             {
-                return EditorUtility.EntityIdToObject(EntityId.FromULong(ulong.Parse(values[1])));
+                return EditorUtility.EntityIdToObject(EntityId.FromULong(NumParser.ULong(values[1])));
             }
             else if (values.Length == 5)
             {
                 var id = new ObjectIdentifier();
                 var refId = __makeref(id);
                 FI_m_GUID.SetValueDirect(refId, new GUID(values[1]));
-                FI_m_LocalIdentifierInFile.SetValueDirect(refId, long.Parse(values[2]));
-                FI_m_FileType.SetValueDirect(refId, int.Parse(values[3]));
+                FI_m_LocalIdentifierInFile.SetValueDirect(refId, NumParser.Long(values[2]));
+                FI_m_FileType.SetValueDirect(refId, NumParser.Int(values[3]));
                 if (ObjectIdentifier.ToObject(id) is Object obj) return obj;
-                return EditorUtility.EntityIdToObject(EntityId.FromULong(ulong.Parse(values[4])));
+                return EditorUtility.EntityIdToObject(EntityId.FromULong(NumParser.ULong(values[4])));
             }
             return null;
         }

@@ -37,7 +37,7 @@ namespace jp.lilxyzw.shadercore
         {
             if (!Property.hasMixedValue)
             {
-                text = Property.intValue.ToString(formatString);
+                text = NumParser.ToString(Property.intValue);
                 rawValue = Property.intValue;
             }
             UpdateImage();

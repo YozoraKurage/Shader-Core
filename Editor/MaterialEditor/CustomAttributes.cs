@@ -106,8 +106,8 @@ namespace jp.lilxyzw.shadercore
             var argsSeparated = args.Split(',');
             switch (prop.propertyType)
             {
-                case ShaderPropertyType.Float: container.Add(new SCSlider(prop, float.Parse(argsSeparated[0].Replace('_','-')), float.Parse(argsSeparated[1].Replace('_','-')))); return;
-                case ShaderPropertyType.Int: container.Add(new SCSliderInt(prop, int.Parse(argsSeparated[0].Replace('_','-')), int.Parse(argsSeparated[1].Replace('_','-')))); return;
+                case ShaderPropertyType.Float: container.Add(new SCSlider(prop, NumParser.Float(argsSeparated[0].Replace('_','-')), NumParser.Float(argsSeparated[1].Replace('_','-')))); return;
+                case ShaderPropertyType.Int: container.Add(new SCSliderInt(prop, NumParser.Int(argsSeparated[0].Replace('_','-')), NumParser.Int(argsSeparated[1].Replace('_','-')))); return;
                 default: return;
             }
         }
@@ -115,13 +115,13 @@ namespace jp.lilxyzw.shadercore
         private static void SCRangeInt(SCMaterialEditor editor, MaterialProperty prop, string args, VisualElement container)
         {
             var argsSeparated = args.Split(',');
-            container.Add(new SCSliderInt(prop, int.Parse(argsSeparated[0].Replace('_','-')), int.Parse(argsSeparated[1].Replace('_','-'))));
+            container.Add(new SCSliderInt(prop, NumParser.Int(argsSeparated[0].Replace('_','-')), NumParser.Int(argsSeparated[1].Replace('_','-'))));
         }
 
         private static void SCMinMax(SCMaterialEditor editor, MaterialProperty prop, string args, VisualElement container)
         {
             var argsSeparated = args.Split(',');
-            container.Add(new SCMinMax(prop, float.Parse(argsSeparated[0].Replace('_','-')), float.Parse(argsSeparated[1].Replace('_','-'))));
+            container.Add(new SCMinMax(prop, NumParser.Float(argsSeparated[0].Replace('_','-')), NumParser.Float(argsSeparated[1].Replace('_','-'))));
         }
 
         private static void SCVector(SCMaterialEditor editor, MaterialProperty prop, string args, VisualElement container)
@@ -175,7 +175,7 @@ namespace jp.lilxyzw.shadercore
             }
 
             var val = args.Contains(',') ? args.Split(',')[0] : args;
-            if (!int.TryParse(val, out var max))
+            if (!NumParser.Int(val, out var max))
             {
                 throw new Exception($"Invalid max value for SCConstValue. {prop.name}");
             }

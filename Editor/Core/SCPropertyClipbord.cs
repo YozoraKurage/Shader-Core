@@ -45,12 +45,12 @@ namespace jp.lilxyzw.shadercore
                 type = values[1];
                 switch (type)
                 {
-                    case "float": x = float.Parse(values[2]); break;
-                    case "float4": x = float.Parse(values[2]); y = float.Parse(values[3]); z = float.Parse(values[4]); w = float.Parse(values[5]); break;
-                    case "int": ix = int.Parse(values[2]); break;
-                    case "int4": ix = int.Parse(values[2]); iy = int.Parse(values[3]); iz = int.Parse(values[4]); iw = int.Parse(values[5]); break;
-                    case "uint": ux = uint.Parse(values[2]); break;
-                    case "uint4": ux = uint.Parse(values[2]); uy = uint.Parse(values[3]); uz = uint.Parse(values[4]); uw = uint.Parse(values[5]); break;
+                    case "float": x = NumParser.Float(values[2]); break;
+                    case "float4": x = NumParser.Float(values[2]); y = NumParser.Float(values[3]); z = NumParser.Float(values[4]); w = NumParser.Float(values[5]); break;
+                    case "int": ix = NumParser.Int(values[2]); break;
+                    case "int4": ix = NumParser.Int(values[2]); iy = NumParser.Int(values[3]); iz = NumParser.Int(values[4]); iw = NumParser.Int(values[5]); break;
+                    case "uint": ux = NumParser.UInt(values[2]); break;
+                    case "uint4": ux = NumParser.UInt(values[2]); uy = NumParser.UInt(values[3]); uz = NumParser.UInt(values[4]); uw = NumParser.UInt(values[5]); break;
                     case "reference": reference = values[2]; break;
                     default: break;
                 }

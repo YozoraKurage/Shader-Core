@@ -60,7 +60,7 @@ namespace jp.lilxyzw.shadercore
                 m.count = mm.count;
 
                 foreach (var p in m.properties)
-                    p.attributes = p.attributes.Select(a => a.Replace("__N__", m.count.ToString())).ToList();
+                    p.attributes = p.attributes.Select(a => a.Replace("__N__", NumParser.ToString(m.count))).ToList();
 
                 for (int i = 0; i < m.count; i++)
                     foreach (var prop in m.properties_multi)
@@ -267,7 +267,7 @@ namespace jp.lilxyzw.shadercore
 
         private static void ToKeywords(string indent, StringBuilder sb, SCProperty prop, params string[] args)
         {
-            if (!int.TryParse(args[0], out var max)) throw new Exception($"Invalid max value. {prop.name} => {args[0]}");
+            if (!NumParser.Int(args[0], out var max)) throw new Exception($"Invalid max value. {prop.name} => {args[0]}");
             if (args.Length == 1)
             {
                 sb.Append(indent).Append(ToKeywords(prop, max, ""));
